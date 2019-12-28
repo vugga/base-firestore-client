@@ -1,7 +1,7 @@
 {
   "name": "@vuga/base-firestore-client",
   "private": false,
-  "version": "0.0.9",
+  "version": "0.0.1",
   "description": "JS Firebase Firestore CRUD library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/vugga/base-firestore.git"
+    "url": "git://github.com/vugga/base-firestore-client.git"
   },
   "keywords": [
     "firebase",
@@ -37,9 +37,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vugga/base-firestore/issues"
+    "url": "https://github.com/vugga/base-firestore-client/issues"
   },
-  "homepage": "https://github.com/vugga/base-firestore",
+  "homepage": "https://github.com/vugga/base-firestore-client",
   "devDependencies": {
     "@types/chai": "^4.0.4",
     "@types/lodash": "^4.14.144",
