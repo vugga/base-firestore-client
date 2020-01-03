@@ -1,7 +1,7 @@
 import { firestore } from 'firebase'
 import isEmpty from 'lodash/isEmpty';
 import { getTimeStamp } from './_utils';
-import { AutoPagination, PaginationData, Operators } from './interface';
+import { AutoPagination, PaginationData, Operators, OrderByDirection } from './interface';
 export * from './interface';
 
 interface IField {
@@ -34,6 +34,10 @@ interface IWhereAll {
   multiple?: boolean;
   limit?: number;
   snapshot?: boolean;
+  sort?: {
+    name: string;
+    direction: OrderByDirection
+  }[]
 }
 
 interface IDocument {
@@ -218,7 +222,7 @@ export default class BaseFireStore {
    */
   async whereAll(query: IWhereAll): Promise<firestore.DocumentData | any | any[]> {
 
-    const { fields, multiple = false, limit = 1000, snapshot = false } = query;
+    const { fields, sort, multiple = false, limit = 1000, snapshot = false } = query;
 
     const data: any = [];
     try {
@@ -229,6 +233,15 @@ export default class BaseFireStore {
       fields.forEach(field => {
         findQuery = findQuery.where(field.name, field.operator, field.value)
       });
+
+      if (sort && !isEmpty(sort)) {
+        // Add all sorts 
+        sort.forEach(field => {
+          findQuery = findQuery.orderBy(field.name, field.direction)
+        });
+      }
+
+
 
       await findQuery.limit(Number(limit)).get()
         .then((snapshotData: any) => {
@@ -245,7 +258,7 @@ export default class BaseFireStore {
         });
 
       if (isEmpty(data)) {
-        throw new Error('Data not found');
+        return null
       }
 
 

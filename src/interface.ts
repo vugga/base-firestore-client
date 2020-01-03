@@ -14,3 +14,5 @@ export interface AutoPagination {
   limit: number;
   page: number;
 }
+
+export type OrderByDirection = 'desc' | 'asc';
