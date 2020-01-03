@@ -1,7 +1,7 @@
 {
   "name": "@vuga/base-firestore-client",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "JS Firebase Firestore CRUD library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
